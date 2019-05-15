@@ -1,2 +1,2 @@
-# project-proposal
-Project Proposal for INFO201-SP19 Group 26
+# project
+Project for INFO201-SP19 Group 26
