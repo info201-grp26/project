@@ -1,5 +1,5 @@
 source("pkg-check.R")
-
+pkgCheck(c("usmap", "ggplot2", "dplyr"))
 
 
 drawMap <- function(area) {
