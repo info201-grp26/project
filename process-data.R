@@ -8,13 +8,17 @@ data <- drop_na(data) # drop rows with incomplete wage data
 areas <- distinct(select(data, Area.name))
 occupations <- distinct(select(data, Occupational.title))
 
+
 county_fips <- list(NA, 53073, 53035, c(53005, 53021), c(53003, 16069), 53015, 53057, 53067,
                c(41005, 53011, 41009, 41051, 53059, 41071), c(53033, 53061),
                c(53051, 53063, 53065), 53053, c(53013, 53071), c(53007, 53017), 53077, c(53009, 53031, 53055),
                c(53027, 53041, 53049, 53045, 53069), c(53037, 53039, 53047), c(53001, 53019, 53023, 53025, 53043, 53075))
-areas$county_fips <- county_fips
-areas <- unnest(areas, county_fips)
-drawMap(areas)
+areas$fips <- county_fips
+
+areas_no_state <- unnest(areas_no_state, fips)
+areas_no_state <- drop_na(areas_no_state)
+areas_no_state$fips <- as.character(areas_no_state$fips)
+drawMap(areas_no_state)
 
 areas$latitude <- c(47.6101, 48.7519, 47.6477, 46.2226348, 46.400245, 46.1382, 
                     48.4203088, 47.037872, 45.6537, 47.7511, 47.6732, 47.2529, 
