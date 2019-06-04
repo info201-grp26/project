@@ -9,4 +9,8 @@ drawMap <- function() {
 
 render <- drawMap()
 
+drawGraph <- function() {
+  
+}
+
 ggsave(filename = "test.jpg", plot = render)
