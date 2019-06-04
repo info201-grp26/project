@@ -1,16 +1,12 @@
 source("pkg-check.R")
-pkgCheck(c("ggplot2", "maps", "usmap"))
 
-map <- map_data("state", region = "washington")
-
-drawMap <- function() {
-  map_render <- ggplot() + geom_polygon(data = map, aes(long, lat))
+drawMap <- function(area) {
+  
+  map_render <- plot_usmap(regions = "county", include = area$county_fips) +
+    labs(title = "Western US States", subtitle = "These are the states in the Pacific Timezone.")
+  ggsave(filename = "test.jpg", plot = map_render)
 }
-
-render <- drawMap()
 
 drawGraph <- function() {
   
 }
-
-ggsave(filename = "test.jpg", plot = render)
