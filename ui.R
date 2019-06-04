@@ -26,7 +26,7 @@ ui <- fluidPage(
     ),
     
     tabPanel(
-      "Hourly Income",
+      "Hourly Income by Area",
       h3(class = "title", "Which area in Washington has the highest average hourly income?"),
       sidebarLayout(
         sidebarPanel(
@@ -40,22 +40,32 @@ ui <- fluidPage(
         mainPanel(
           h4('Description'),
           p(""),
-          dataTableOutput("hourlyAreaTable")
+          numericInput(
+            inputId = "hourlyAreaN", 
+            label = "Top N", 
+            value = 10,
+            min = 1, 
+            max = 50, 
+            step = 2), 
+          tableOutput("hourlyAreaTable")
         )
       )
     ),
     tabPanel(
       "Occupations",
       h3(class = "title", "Which occupations have the highest average hourly incomes?"),
-      sidebarLayout(
-        sidebarPanel(
-          
-        ),
         mainPanel(
           h4('Description'),
-          p("")
+          p(""),
+          numericInput(
+            inputId = "hourlyN", 
+            label = "Top N", 
+            value = 10,
+            min = 1, 
+            max = 50, 
+            step = 2), 
+          tableOutput("hourlyWagesTable")
         )
-      )
     ),
     tabPanel(
       "Hourly Income",
