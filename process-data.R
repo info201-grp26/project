@@ -9,6 +9,8 @@ data <- drop_na(data) # drop rows with incomplete wage data
 
 areas <- distinct(select(data, Area.name))
 occupations <- distinct(select(data, Occupational.title))
+# add longitude and latitude to the dataframe 
+
 
 state_data <- filter(data, Area.code == 53)
 state_occupations <- distinct(select(state_data, Occupational.title))
