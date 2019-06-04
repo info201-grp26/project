@@ -10,6 +10,8 @@ data <- drop_na(data) # drop rows with incomplete wage data
 
 areas <- distinct(select(data, Area.name))
 occupations <- distinct(select(data, Occupational.title))
+# add longitude and latitude to the dataframe 
+
 
 state_data <- filter(data, Area.code == 53)
 state_occupations <- distinct(select(state_data, Occupational.title))
@@ -26,8 +28,15 @@ bartender_data <- get_occupation_data("Bartenders")
 bellingham_data <- get_area_data("Bellingham, WA")
 bellingham_bartender_data <- get_area_occupation_data("Bellingham, WA", "Bartenders")
 
-get_highest_hourly <- function(n) top_n(arrange(area_data, -Average.wage), 10, Average.wage)
-get_highest_area_hourly <- function(n, area) top_n(arrange(get_area_data(area), -Average.wage), 10, Average.wage)
+get_highest_hourly <- function(n) top_n(arrange(area_data, -Average.wage), n, Average.wage)
+get_highest_area_hourly <- function(n, area) {
+  df <- top_n(arrange(get_area_data(area), -Average.wage), 10, Average.wage)
+  df <- select(df, Occupational.title, Average.wage)
+  names(df) <- c("Occupation", "Avg. Hourly Wage")
+  df
+}
+
+
 
 
 
