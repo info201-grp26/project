@@ -2,6 +2,8 @@ library(plotly)
 library(shiny)
 library(shinythemes)
 
+source("process-data.R")
+
 ui <- fluidPage(
   theme = shinytheme("yeti"),
   navbarPage(
@@ -18,21 +20,27 @@ ui <- fluidPage(
                  tags$li("?"),
                  tags$li("?"),
                  tags$li("?")
-               )
-               )
-               )
-               ),
+                  )
+                )
+            )
+    ),
     
     tabPanel(
       "Hourly Income",
       h3(class = "title", "Which area in Washington has the highest average hourly income?"),
       sidebarLayout(
         sidebarPanel(
-          
+          selectInput(
+            inputId = "Area",
+            label = "Area",
+            selected = "All",
+            choices = as.vector(areas)
+          )
         ),
         mainPanel(
           h4('Description'),
-          p("")
+          p(""),
+          dataTableOutput("hourlyAreaTable")
         )
       )
     )
