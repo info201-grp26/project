@@ -1,6 +1,9 @@
-library(plotly)
-library(shiny)
-library(shinythemes)
+# library(plotly)
+# library(shiny)
+# library(shinythemes)
+
+source("pkg-check.R")
+pkgCheck(c("shiny", "shinythemes"))
 
 ui <- fluidPage(
   theme = shinytheme("yeti"),
@@ -9,14 +12,14 @@ ui <- fluidPage(
     tabPanel("Overview",
              mainPanel(
                h3(class = "title", "Overview"),
-               p(""),
-               p(""),
+               p("Our group is working with data that estimates occupational employment and wages in Washington State in 2018. The data records the occupation title along with the mean hourly and yearly wages, as well as 25th, 50th and 75th percentile hourly wages. The data was collected from a survey of 4,800 state employers, collecting information on over 800 occupations with a total sample size of 29,300 employees."),
+               p("The data includes employment and wage figures for different regions as well as Washington as a whole. We hope visualizing this data will provide current and graduating college students with valuable information on prospective fields of employment while also providing insight into the diverse economy of Washington State."),
                h3(class = "title", "Questions"),
                p(tags$ol(
                  tags$li("Which area in Washington has the highest average hourly income?"),
                  tags$li("Which occupations have the highest average hourly incomes?"),
                  tags$li("Which occupation is most popular in each region?"),
-                 tags$li("Which area(s) have the most variability in hourly incomes?"),
+                 tags$li("Which area have the most variability in hourly incomes?"),
                  tags$li("Do metropolitan areas have higher wages than non-metropolitan areas?")
                )
                )
@@ -26,6 +29,58 @@ ui <- fluidPage(
     tabPanel(
       "Hourly Income",
       h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+      sidebarLayout(
+        sidebarPanel(
+          
+        ),
+        mainPanel(
+          h4('Description'),
+          p("")
+        )
+      )
+    ),
+    tabPanel(
+      "Occupations",
+      h3(class = "title", "Which occupations have the highest average hourly incomes?"),
+      sidebarLayout(
+        sidebarPanel(
+          
+        ),
+        mainPanel(
+          h4('Description'),
+          p("")
+        )
+      )
+    ),
+    tabPanel(
+      "Hourly Income",
+      h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+      sidebarLayout(
+        sidebarPanel(
+          
+        ),
+        mainPanel(
+          h4('Description'),
+          p("")
+        )
+      )
+    ),
+    tabPanel(
+      "Region",
+      h3(class = "title", "Which area have the most variability in hourly incomes?"),
+      sidebarLayout(
+        sidebarPanel(
+          
+        ),
+        mainPanel(
+          h4('Description'),
+          p("")
+        )
+      )
+    ),
+    tabPanel(
+      "",
+      h3(class = "title", "Do metropolitan areas have higher wages than non-metropolitan areas?"),
       sidebarLayout(
         sidebarPanel(
           
