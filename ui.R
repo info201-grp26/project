@@ -1,6 +1,9 @@
-library(plotly)
-library(shiny)
-library(shinythemes)
+# library(plotly)
+# library(shiny)
+# library(shinythemes)
+
+source("pkg-check.R")
+pkgCheck(c("shiny", "shinythemes"))
 
 ui <- fluidPage(
   theme = shinytheme("yeti"),
