@@ -40,13 +40,12 @@ ui <- fluidPage(
           h4('Description'),
           p(""),
           h4("Top N average hourly wages in Washington"),
-          numericInput(
+          sliderInput(
             inputId = "hourlyN", 
             label = "Top N", 
-            value = 10,
+            value = 1,
             min = 1, 
-            max = 50, 
-            step = 1),
+            max = 15),
           plotOutput("topNPlot"),
           tableOutput(tbl_df("hourlyWagesTable")),
           h4("Top 10 average hourly wages for the given Area"),
