@@ -1,6 +1,9 @@
 library(dplyr)
 library(tidyr)
 
+pkgCheck(c("RSocrata", "dplyr"))
+source("pkg-check.R")
+
 data <- read.csv("data/Occupational_Employment_and_Wage_Estimates.csv")
 data <- drop_na(data) # drop rows with incomplete wage data
 
@@ -27,3 +30,7 @@ bellingham_bartender_data <- get_area_occupation_data("Bellingham, WA", "Bartend
 get_highest_hourly <- function(n) top_n(arrange(area_data, -Average.wage), 10, Average.wage)
 
 View(get_highest_hourly(10))
+
+
+
+
