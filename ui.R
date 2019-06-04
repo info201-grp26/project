@@ -14,10 +14,10 @@ ui <- fluidPage(
                h3(class = "title", "Questions"),
                p(tags$ol(
                  tags$li("Which area in Washington has the highest average hourly income?"),
-                 tags$li("?"),
-                 tags$li("?"),
-                 tags$li("?"),
-                 tags$li("?")
+                 tags$li("Which occupations have the highest average hourly incomes?"),
+                 tags$li("Which occupation is most popular in each region?"),
+                 tags$li("Which area(s) have the most variability in hourly incomes?"),
+                 tags$li("Do metropolitan areas have higher wages than non-metropolitan areas?")
                )
                )
                )
