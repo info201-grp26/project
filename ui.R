@@ -60,24 +60,35 @@ ui <- fluidPage(
     ),
     tabPanel(
       "Occupations",
-      h3(class = "title", "Which occupations have the highest average hourly incomes?"),
+      h3(class = "title", "Which occupations are most popular in Washington State?"),
         mainPanel(
           h4('Description'),
-          p("")
+          p(""),
           #plotOutput("topNPlot"),
-          #tableOutput(tbl_df("hourlyWagesTable"))
+          tableOutput("mostEmployedTable")
         )
     ),
     tabPanel(
-      "Hourly Income",
-      h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+      "Occupation and Area Lookup",
+      h3(class = "title", "Browse occupation by area in the dataset"),
+      #h3(class = "title", "Which area in Washington has the highest average hourly income?"),
       sidebarLayout(
         sidebarPanel(
-          
+          selectInput(
+            inputId = "Area",
+            label = "Area",
+            choices = as.vector(areas_choices)
+          ),
+          selectInput(
+            inputId = "Occupation",
+            label = "Occupation",
+            choices = as.vector(occupations)
+          )
         ),
         mainPanel(
           h4('Description'),
-          p("")
+          p(""),
+          tableOutput("occupationAreaLookup")
         )
       )
     ),

@@ -53,7 +53,16 @@ get_highest_area_hourly <- function(n, area) {
   tbl_df(df)
 }
 
-
 #top10 <- get_highest_hourly(10)
 #selectedMap(top10)
+
+get_most_employed_WA <- function(n) {
+  df <- top_n(arrange(state_data, -Employment), n, Employment)
+  df <- select(df, Occupational.title, Employment)
+  names(df) <- c("Occupation", "# Employed")
+  tbl_df(df)
+}
+
+
+
 
