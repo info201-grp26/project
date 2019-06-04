@@ -16,6 +16,7 @@ ui <- fluidPage(
                h3(class = "title", "Overview"),
                p("Our group is working with data that estimates occupational employment and wages in Washington State in 2018. The data records the occupation title along with the mean hourly and yearly wages, as well as 25th, 50th and 75th percentile hourly wages. The data was collected from a survey of 4,800 state employers, collecting information on over 800 occupations with a total sample size of 29,300 employees."),
                p("The data includes employment and wage figures for different regions as well as Washington as a whole. We hope visualizing this data will provide current and graduating college students with valuable information on prospective fields of employment while also providing insight into the diverse economy of Washington State."),
+               plotOutput("areaPlot"),
                h3(class = "title", "Questions"),
                p(tags$ol(
                  tags$li("Which area in Washington has the highest average hourly income?"),
@@ -29,27 +30,31 @@ ui <- fluidPage(
     ),
     
     tabPanel(
-      "Hourly Income by Area",
+      "Hourly Income",
       h3(class = "title", "Which area in Washington has the highest average hourly income?"),
       sidebarLayout(
         sidebarPanel(
-          selectInput(
-            inputId = "Area",
-            label = "Area",
-            selected = "All",
-            choices = as.vector(areas)
-          )
+          
         ),
         mainPanel(
           h4('Description'),
           p(""),
+          h4("Top N average hourly wages in Washington"),
           numericInput(
-            inputId = "hourlyAreaN", 
+            inputId = "hourlyN", 
             label = "Top N", 
             value = 10,
             min = 1, 
             max = 50, 
-            step = 2), 
+            step = 1),
+          plotOutput("topNPlot"),
+          tableOutput(tbl_df("hourlyWagesTable")),
+          h4("Top 10 average hourly wages for the given Area"),
+          selectInput(
+            inputId = "Area",
+            label = "Area",
+            choices = as.vector(areas_choices)
+          ),
           tableOutput("hourlyAreaTable")
         )
       )
@@ -59,15 +64,9 @@ ui <- fluidPage(
       h3(class = "title", "Which occupations have the highest average hourly incomes?"),
         mainPanel(
           h4('Description'),
-          p(""),
-          numericInput(
-            inputId = "hourlyN", 
-            label = "Top N", 
-            value = 10,
-            min = 1, 
-            max = 50, 
-            step = 2), 
-          tableOutput("hourlyWagesTable")
+          p("")
+          #plotOutput("topNPlot"),
+          #tableOutput(tbl_df("hourlyWagesTable"))
         )
     ),
     tabPanel(
