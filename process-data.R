@@ -34,3 +34,10 @@ View(get_highest_hourly(10))
 
 
 
+drawMap <- function() {
+  
+}
+
+getAreaData <- function() {
+  
+}
