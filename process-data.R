@@ -39,14 +39,19 @@ bellingham_data <- get_area_data("Bellingham, WA")
 bellingham_bartender_data <- get_area_occupation_data("Bellingham, WA", "Bartenders")
 
 get_hourly <- function(n) {
-  df <- top_n(area_data, n, Average.wage)
+  df <- arrange(area_data, Average.wage) %>% top_n(n, Average.wage)
   df <- select(df, Area.name, Occupational.title, Average.wage)
   names(df) <- c("Area", "Occupation", "Avg. Hourly Wage")
   df
 }
 
 get_area_hourly <- function(n, area) {
-  df <- top_n(get_area_data(area), n, Average.wage)
+  if (n < 0) {
+    df <- arrange(get_area_data(area), Average.wage)
+  } else {
+    df <- arrange(get_area_data(area), -Average.wage)
+  }
+  df <- df %>% top_n(n, Average.wage)
   df <- select(df, Occupational.title, Average.wage)
   names(df) <- c("Occupation", "Avg. Hourly Wage")
   tbl_df(df)
@@ -54,6 +59,7 @@ get_area_hourly <- function(n, area) {
 
 get_employed_WA <- function(n) {
   df <- top_n(state_data, n, Employment)
+  df <- arrange(state_data, -Employment) %>% top_n(n, Employment)
   df <- select(df, Occupational.title, Employment)
   names(df) <- c("Occupation", "# Employed")
   tbl_df(df)

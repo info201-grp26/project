@@ -64,32 +64,32 @@ ui <- fluidPage(
       tabPanel(
         "Counties",
         h3(class = "title", "Which area in Washington has the highest average hourly income?"),
-        sidebarLayout(
+          sidebarLayout(
             sidebarPanel(
               selectInput(
                 inputId = "Area",
                 label = "Area",
                 choices = as.vector(areas_choices)
-              ),
-              plotOutput("countyMap")
+              )
             ),
           mainPanel(
             h4('Description'),
             p(""),
             flowLayout(
-              fluidPage(
-                h4("Top 10 average hourly wages for the given Area"),
-                tableOutput("hourlyAreaTable")
-              ),
             fluidPage(
-              h4("Bottom 10 average hourly wages for the given Area"),
-              tableOutput("hourlyAreaTableBottom")
-            )
-          )
-        )
-      )
-    )
-  ),
+                         h4("Top 10 average hourly wages for the given Area"),
+                         tableOutput("hourlyAreaTable")
+                       )
+                       ,
+                       fluidPage(
+                         h4("Bottom 10 average hourly wages for the given Area"),
+                         tableOutput("hourlyAreaTableBottom")
+                       )
+                     )
+                   )
+                 )
+          )),
+    
     navbarMenu("Occupations",
                tabPanel(
                  "WA State",
