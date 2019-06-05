@@ -38,7 +38,8 @@ ui <- fluidPage(
         ),
         mainPanel(
           h4('Description'),
-          p(""),
+          p("The top paying jobs in Washington include", strong("Dentist"), "in the Greater Seattle Area", strong("($89.81/hr)"), ",", strong("Dentist"), "in Yakima", strong("($88.33)"), "and", strong("General Practitioner"), "in Spokane", strong("($84.88)"),"."),
+          p("Click and drag the slider below to see a longer list highest paying occupations in Washington State, along with the corresponding area."),
           h4("Top N average hourly wages in Washington"),
           sliderInput(
             inputId = "hourlyN", 
