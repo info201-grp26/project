@@ -82,8 +82,7 @@ ui <- fluidPage(
                         tableOutput("hourlyAreaTableBottom")
                        )
                      ),
-            h4('Description'),
-            p("")
+            h4('Description')
                    )
                  )
           )),
