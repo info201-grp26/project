@@ -13,7 +13,7 @@ occupations <- distinct(select(data, Occupational.title))
 
 # add fip codes to data frame 
 areas_fips <- areas_choices
-county_fips <- list(NA, 53073, 53035, c(53005, 53021), c(53003, 16069), 53015, 53057, 53067,
+county_fips <- list(53, 53073, 53035, c(53005, 53021), c(53003, 16069), 53015, 53057, 53067,
                c(41005, 53011, 41009, 41051, 53059, 41071), c(53033, 53061),
                c(53051, 53063, 53065), 53053, c(53013, 53071), c(53007, 53017), 53077, c(53009, 53031, 53055),
                c(53027, 53041, 53049, 53045, 53069), c(53037, 53039, 53047), c(53001, 53019, 53023, 53025, 53043, 53075))
@@ -51,10 +51,6 @@ get_area_hourly <- function(n, area) {
   names(df) <- c("Occupation", "Avg. Hourly Wage")
   tbl_df(df)
 }
-
-
-#top10 <- get_highest_hourly(10)
-#selectedMap(top10)
 
 get_employed_WA <- function(n) {
   df <- top_n(state_data, n, Employment)

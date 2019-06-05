@@ -26,6 +26,10 @@ server <- function(input, output) {
    output$topNPlot<- renderPlot(
      selectedMap(get_hourly(input$hourlyN))
    )
+   
+   output$countyMap <- renderPlot(
+     drawMap(areas_fips[areas_fips$Area.name == input$Area, ])
+   )
   
   # Occupations
   output$mostEmployedTable <- renderTable(
@@ -33,7 +37,7 @@ server <- function(input, output) {
   )
   
   output$mostEmployedWATable <- renderTable(
-    get_most_employed_WA(10)
+    get_employed_WA(10)
   )
   
   # Occupation and Area Lookup
