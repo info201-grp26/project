@@ -119,7 +119,7 @@ ui <- fluidPage(
       sidebarLayout(
         sidebarPanel(
           selectInput(
-            inputId = "Area",
+            inputId = "Area2",
             label = "Area",
             choices = as.vector(areas_choices)
           ),
@@ -127,7 +127,8 @@ ui <- fluidPage(
             inputId = "Occupation",
             label = "Occupation",
             choices = as.vector(occupations)
-          )
+          ),
+          plotOutput("countyMap2")
         ),
         mainPanel(
           h4('Description'),

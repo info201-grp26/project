@@ -22,9 +22,6 @@ areas_fips <- unnest(areas_fips, fips)
 areas_fips <- drop_na(areas_fips)
 areas_fips$fips <- as.character(areas_fips$fips)
 
-#areas_fips$lat <- c(47.6101, 48.7519, 47.6477, 46.2226348, 46.400245, 46.1382, 48.4203088, 47.037872, 45.6537, 47.7511, 47.6732, 47.2529, 46.0646, 47.4235, 46.6021, NA, NA, NA, NA)
-#areas_fips$long <- c(-122.2015, -122.4787, -122.6413, -119.1830691, -117.00103, -122.9382, -122.3114, -122.900696, -122.5463, -120.7401, -117.2394, -122.4443, -118.3430, -120.3103, -120.5059, NA, NA, NA, NA)
-
 state_data <- filter(data, Area.code == 53)
 state_occupations <- distinct(select(state_data, Occupational.title))
 
