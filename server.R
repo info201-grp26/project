@@ -5,7 +5,7 @@ pkgCheck(c("shiny"))
 server <- function(input, output) {
   # Overview
   output$areaPlot <- renderPlot(
-    drawMap(areas_fips)
+    drawMap(areas_fips, "Washington State counties, highlighted by statistical divisions", "This includes some counties from Idaho and Oregon")
   )
 
   # Hourly Wage
@@ -36,7 +36,7 @@ server <- function(input, output) {
    )
 
   output$countyMap1 <- renderPlot(
-     drawMap(areas_fips[areas_fips$Area.name == input$Area,])
+     drawMap(areas_fips[areas_fips$Area.name == input$Area,], input$Area, "")
    )
 
   # Occupations
@@ -54,6 +54,6 @@ server <- function(input, output) {
   )
 
   output$countyMap2 <- renderPlot(
-    drawMap(areas_fips[areas_fips$Area.name == input$Area2,])
+    drawMap(areas_fips[areas_fips$Area.name == input$Area2,], "Washington State counties, highlighted by statistical divisions", "This includes some counties from Idaho and Oregon")
   )
 }
