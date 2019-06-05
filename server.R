@@ -15,6 +15,10 @@ server <- function(input, output) {
   occupation_data <- reactive({
     get_occupation_data(input$Occupation)
   })
+  
+  occupation_area_data <- reactive({
+    get_area_occupation_data(input$Area2, input$Occupation)
+  })
 
   output$areaOccupations <- renderUI(
     selectInput(
@@ -73,10 +77,14 @@ server <- function(input, output) {
   )
   
   # Occupation and Area Lookup
-  output$occupationAreaLookup <- renderText(
-    paste(paste0("The Averge Hourly Wage for ", input$Occupation, " in ", input$Area2, " is $", get_area_occupation_data(input$Area2, input$Occupation)$Average.wage),
-                 paste0("The Annual Wage is $", get_area_occupation_data(input$Area2, input$Occupation)$Annual.wage), sep = "\n")
+  output$hourlyWage <- renderUI(
+    h4(paste0("The Averge Hourly Wage for ", input$Occupation, " in ", input$Area2, " is $", occupation_area_data()$Average.wage))
   )
+  
+  output$annualWage <- renderUI(
+    h4(paste0("The Annual Wage is $", occupation_area_data()$Annual.wage)),
+  )
+  
   
   output$occupationPlot <- renderPlot(
     occupationPlot(get_occupation_data(input$Occupation))

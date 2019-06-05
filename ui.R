@@ -5,6 +5,10 @@ source("process-data.R")
 
 ui <- fluidPage(
   theme = shinytheme("yeti"),
+  tags$style(type="text/css",
+             ".shiny-output-error { visibility: hidden; }",
+             ".shiny-output-error:before { visibility: hidden; }"
+  ),
   navbarPage(
     "Occupations in Washington State - Group 6:45 (Khoa Luong, Matthew McNeil, Saatvik Arya, Sherry Zhang)",
     tabPanel("Overview",
@@ -153,13 +157,14 @@ ui <- fluidPage(
           selectInput(
             inputId = "Area2",
             label = "Area",
-            choices = as.vector(areas_choices)
+            choices = as.character(areas_choices[["Area.name"]])[2:19]
           ),
           uiOutput("areaOccupations"),
           plotOutput("countyMap2")
         ),
         mainPanel(
-          h4(textOutput("occupationAreaLookup")),
+          uiOutput("hourlyWage"),
+          uiOutput("annualWage"),
           plotOutput("occupationPlot")
           
         )
