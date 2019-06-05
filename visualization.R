@@ -63,4 +63,15 @@ employmentPlot <- function(dataset) {
   map_render
 }
 
-
+drawBox <- function(dataset, datapoint) {
+  iqr = (dataset$X75th.Percentile - dataset$X25th.Percentile)
+  ymin = dataset$X25th.Percentile - 1.5 * iqr
+  ymax = dataset$X75th.Percentile + 1.5 * iqr
+  
+  plot_render <- ggplot(data = dataset, aes(x = Occupational.title)) +
+    geom_boxplot(aes(ymin = ymin, ymax = ymax, middle = X50th.Percentile, upper = X75th.Percentile,lower= X25th.Percentile),
+                 stat = 'identity') + ylab("Hourly Wage")
+  plot_render <- plot_render + geom_point(aes(y = datapoint, color = "red"), size = 5, name = "Your Wage") +
+    coord_flip() + theme(axis.title.y = element_blank(), legend.position = "none")
+  plot_render
+}

@@ -65,6 +65,8 @@ server <- function(input, output) {
   output$countyMap2 <- renderPlot(
     drawMap(areas_fips[areas_fips$Area.name == input$Area2,], input$Area2, "")
   )
-
   
+  output$variablePlot <- renderPlot(
+    drawBox(get_area_occupation_data(input$Area2, input$Occupation), input$wageInput)
+  )
 }

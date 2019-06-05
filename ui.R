@@ -160,10 +160,18 @@ ui <- fluidPage(
             label = "Occupation",
             choices = as.vector(occupations)
           ),
+          sliderInput(
+            inputId = "wageInput",
+            label = "Hourly wage ($/hr)",
+            value = 15.00,
+            min = 0,
+            max = 100,
+          ),
           plotOutput("countyMap2")
         ),
         mainPanel(
-          h4(textOutput("occupationAreaLookup"))
+          h4(textOutput("occupationAreaLookup")),
+          plotOutput("variablePlot")
         )
       )
     )
