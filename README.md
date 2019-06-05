@@ -2,7 +2,7 @@
 Project for INFO201-SP19 Group 26
 
 
-### Author 
+### Authors
 - Khoa Luong
 - Matthew McNeil
 - Saatvik Arya 
@@ -43,3 +43,5 @@ create visualization, we used `usmap`, `ggplot2` and `plotly`to better combine w
 
 
 **Challenges**
+We had difficulty labelling the map with county names. We found a package that allowed us
+to solve this issue. 
