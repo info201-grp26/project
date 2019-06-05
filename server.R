@@ -53,7 +53,7 @@ server <- function(input, output) {
   )
 
   output$mostEmployedWATable <- renderTable(
-    get_employed_WA(10)
+    get_employed_WA(input$mostEmployedWASlider)
   )
   
   # Occupation and Area Lookup

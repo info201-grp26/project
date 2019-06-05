@@ -34,7 +34,7 @@ ui <- fluidPage(
     navbarMenu("Hourly Income",
       tabPanel(
         "WA State",
-        h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+        h3(class = "title", "Which area in Washington has the highest average hourly income? What occupation is it?"),
         sidebarLayout(
           sidebarPanel(
             sliderInput(
@@ -60,7 +60,7 @@ ui <- fluidPage(
       ),
       tabPanel(
         "Counties",
-        h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+        h3(class = "title", "How does the highest and lowest paying occupations vary across Washington State?"),
           sidebarLayout(
             sidebarPanel(
               selectInput(
@@ -91,16 +91,25 @@ ui <- fluidPage(
                tabPanel(
                  "WA State",
                  h3(class = "title", "Which occupations are most popular in Washington State?"),
+                 sidebarLayout(
+                   sidebarPanel(
+                     sliderInput(
+                       inputId = "mostEmployedWASlider",
+                       label = "Top N",
+                       value = 10,
+                       min = 1,
+                       max = 25)
+                   ),
                  mainPanel(
                    h4('Description'),
                    p(""),
-#plotOutput("topNPlot"),
+                   
                    tableOutput("mostEmployedWATable")
                  )
-               ),
+               )),
                tabPanel(
                  "Counties",
-                 h3(class = "title", "Which occupations are most popular in Counties?"),
+                 h3(class = "title", "How does the most popular occupation vary across Washington State?"),
                  mainPanel(
                    h4('Description'),
                    p(""),
@@ -128,32 +137,6 @@ ui <- fluidPage(
         ),
         mainPanel(
           h4(textOutput("occupationAreaLookup"))
-        )
-      )
-    ),
-    tabPanel(
-      "Region",
-      h3(class = "title", "Which area have the most variability in hourly incomes?"),
-      sidebarLayout(
-        sidebarPanel(
-
-        ),
-        mainPanel(
-          h4('Description'),
-          p("")
-        )
-      )
-    ),
-    tabPanel(
-      "",
-      h3(class = "title", "Do metropolitan areas have higher wages than non-metropolitan areas?"),
-      sidebarLayout(
-        sidebarPanel(
-
-        ),
-        mainPanel(
-          h4('Description'),
-          p("")
         )
       )
     )
