@@ -34,27 +34,35 @@ ui <- fluidPage(
       h3(class = "title", "Which area in Washington has the highest average hourly income?"),
       sidebarLayout(
         sidebarPanel(
-          
-        ),
-        mainPanel(
-          h4('Description'),
-          p(""),
-          h4("Top N average hourly wages in Washington"),
           sliderInput(
             inputId = "hourlyN", 
             label = "Top N", 
             value = 1,
             min = 1, 
             max = 15),
-          plotOutput("topNPlot"),
-          tableOutput(tbl_df("hourlyWagesTable")),
-          h4("Top 10 average hourly wages for the given Area"),
           selectInput(
             inputId = "Area",
             label = "Area",
             choices = as.vector(areas_choices)
           ),
-          tableOutput("hourlyAreaTable")
+          plotOutput("topNPlot")
+        ),
+        mainPanel(
+          h4('Description'),
+          p(""),
+          h4("Top N average hourly wages in Washington"),
+          tableOutput(tbl_df("hourlyWagesTable")),
+           flowLayout(
+             fluidPage(
+              h4("Top 10 average hourly wages for the given Area"),
+              tableOutput("hourlyAreaTable")
+             )
+          ,
+             fluidPage(
+              h4("Bottom 10 average hourly wages for the given Area"),
+              tableOutput("hourlyAreaTableBottom")
+             )
+           )
         )
       )
     ),

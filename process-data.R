@@ -38,25 +38,26 @@ bartender_data <- get_occupation_data("Bartenders")
 bellingham_data <- get_area_data("Bellingham, WA")
 bellingham_bartender_data <- get_area_occupation_data("Bellingham, WA", "Bartenders")
 
-get_highest_hourly <- function(n) {
-  df <- top_n(arrange(area_data, -Average.wage), n, Average.wage)
+get_hourly <- function(n) {
+  df <- top_n(area_data, n, Average.wage)
   df <- select(df, Area.name, Occupational.title, Average.wage)
   names(df) <- c("Area", "Occupation", "Avg. Hourly Wage")
   df
 }
 
-get_highest_area_hourly <- function(n, area) {
-  df <- top_n(arrange(get_area_data(area), -Average.wage), n, Average.wage)
+get_area_hourly <- function(n, area) {
+  df <- top_n(get_area_data(area), n, Average.wage)
   df <- select(df, Occupational.title, Average.wage)
   names(df) <- c("Occupation", "Avg. Hourly Wage")
   tbl_df(df)
 }
 
+
 #top10 <- get_highest_hourly(10)
 #selectedMap(top10)
 
-get_most_employed_WA <- function(n) {
-  df <- top_n(arrange(state_data, -Employment), n, Employment)
+get_employed_WA <- function(n) {
+  df <- top_n(state_data, n, Employment)
   df <- select(df, Occupational.title, Employment)
   names(df) <- c("Occupation", "# Employed")
   tbl_df(df)
