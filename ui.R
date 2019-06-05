@@ -86,10 +86,14 @@ ui <- fluidPage(
                         tableOutput("hourlyAreaTableBottom")
                        )
                      ),
+<<<<<<< HEAD
             h4('Description'),
             p("Observed from the graph, **Chief Executives ($60/hr - $70/hr)** is the occupation with the **highest** 
               average hourly wage. **Hotel Clerks ($12/hr)**, **Cleaners ($13/hr)**, **Cashiers ($13/hr)** are the 
               occupations with the **lowest** average hourly wage.")
+=======
+            h4('Description')
+>>>>>>> a0778b1e0c758943e12551e85e7ac2aada87d0f9
                    )
                  )
           )),

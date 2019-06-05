@@ -2,11 +2,6 @@ source("pkg-check.R")
 pkgCheck(c("usmap", "ggplot2", "dplyr"))
 
 drawMap <- function(area, title, subtitle) {
-  counties_data <- counties %>% group_by(county_fips) %>% summarise(lat = mean(lat), long = mean(long))
-  area_map <- areas_fips 
-  names(area_map)[2] <- "county_fips"
-  area_map <- left_join(area_map, counties_data, by = "county_fips")
-  
   map_render <- plot_usmap(data = area, values = "Area.name", regions = "county", include = areas_fips$fips) +
                 labs(title = title,
                      subtitle = subtitle) +
@@ -67,6 +62,5 @@ employmentPlot <- function(dataset) {
   map_render <- map_render + scale_fill_discrete(name = "Occupations") + theme(legend.position = "bottom")
   map_render
 }
-
 
 
