@@ -137,15 +137,13 @@ ui <- fluidPage(
             label = "Area",
             choices = as.vector(areas_choices)
           ),
-          selectInput(
-            inputId = "Occupation",
-            label = "Occupation",
-            choices = as.vector(occupations)
-          ),
+          uiOutput("areaOccupations"),
           plotOutput("countyMap2")
         ),
         mainPanel(
-          h4(textOutput("occupationAreaLookup"))
+          h4(textOutput("occupationAreaLookup")),
+          plotOutput("occupationPlot")
+          
         )
       )
     )

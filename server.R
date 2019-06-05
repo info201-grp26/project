@@ -7,7 +7,23 @@ server <- function(input, output) {
     regionPlot(areas_fips) 
     #drawMap(areas_fips, "right")
   )
+  
+  area_occupations <- reactive({
+    get_area_occupations(input$Area2)
+  })
+  
+  occupation_data <- reactive({
+    get_occupation_data(input$Occupation)
+  })
 
+  output$areaOccupations <- renderUI(
+    selectInput(
+      inputId = "Occupation",
+      label = "Occupation",
+      choices = as.vector(area_occupations())
+    )
+  )
+  
   # Hourly Wage
   output$hourlyAreaTable <- renderTable(
     get_area_hourly(10, input$Area)
@@ -49,7 +65,7 @@ server <- function(input, output) {
   )
   
   output$mostEmployedPlot <- renderPlot(
-    employmentPlot(most_employed)
+    employmentPlot()
   )
 
   output$mostEmployedWATable <- renderTable(
@@ -60,6 +76,10 @@ server <- function(input, output) {
   output$occupationAreaLookup <- renderText(
     paste(paste0("The Averge Hourly Wage for ", input$Occupation, " in ", input$Area2, " is $", get_area_occupation_data(input$Area2, input$Occupation)$Average.wage),
                  paste0("The Annual Wage is $", get_area_occupation_data(input$Area2, input$Occupation)$Annual.wage), sep = "\n")
+  )
+  
+  output$occupationPlot <- renderPlot(
+    occupationPlot(get_occupation_data(input$Occupation))
   )
   
   output$countyMap2 <- renderPlot(

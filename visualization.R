@@ -9,8 +9,9 @@ drawMap <- function(area, title, subtitle) {
   map_render
 }
 
+counties_data <- us_map(regions = "counties") %>% group_by(fips) %>% summarise(lat = mean(lat), long = mean(long))
+
 regionPlot <- function(dataset) {
-  counties_data <- us_map(regions = "counties") %>% group_by(fips) %>% summarise(lat = mean(lat), long = mean(long))
   dataset <- left_join(dataset, counties_data, by = "fips")
   dataset <- dataset %>% group_by(Area.name) %>% summarise(lat = mean(lat), long = mean(long))
   
@@ -27,7 +28,6 @@ topWAplot <- function(dataset) {
   dataset <- left_join(dataset, areas_fips, by = "Area.name")
   dataset2 <- dataset
  
-  counties_data <- us_map(regions = "counties") %>% group_by(fips) %>% summarise(lat = mean(lat), long = mean(long))
   dataset <- left_join(dataset, counties_data, by = "fips")
   names(dataset)[3] <- "wage"
   dataset <- dataset %>% group_by(wage) %>% summarise(Area.name = first(Area.name), Occupation = first(Occupation), lat = mean(lat), long = mean(long))
@@ -38,7 +38,7 @@ topWAplot <- function(dataset) {
   map_render
 }
 
-employmentPlot <- function(dataset) {
+employmentPlot <- function() {
   dataset <- most_employed
   names(dataset)[1] <- "Area.name"
   dataset <- left_join(dataset, areas_fips, by = "Area.name")
@@ -51,15 +51,28 @@ employmentPlot <- function(dataset) {
   dataset$Occupation[dataset$Occupation == "General & Operations Managers"] <- "Managers"
   dataset$Occupation[dataset$Occupation == "Software Developers, Applications"] <- "Software Developers"
   
-  counties_data <- us_map(regions = "counties") %>% group_by(fips) %>% summarise(lat = mean(lat), long = mean(long))
   dataset <- left_join(dataset, counties_data, by = "fips")
-  names(dataset)
   dataset <- dataset %>% group_by(Occupation) %>% summarise(Employment = sum(Employment), lat = median(lat), long = median(long))
   
   
   map_render <- plot_usmap(data = dataset2, values = "Occupation", regions = "county", include = areas_fips$fips)
   map_render <- map_render + geom_label(data = dataset, aes(long, lat, label = Occupation))
   map_render <- map_render + scale_fill_discrete(name = "Occupations") + theme(legend.position = "bottom")
+  map_render
+}
+
+occupationPlot <- function(dataset) {
+  dataset <- dataset %>% select(Area.name, Occupational.title, Average.wage)
+  dataset <- left_join(dataset, areas_fips, by = "Area.name")
+  dataset2 <- dataset
+  
+  dataset <- left_join(dataset, counties_data, by = "fips")
+  dataset <- dataset %>% group_by(Area.name) %>% summarise(Average.wage = mean(Average.wage), lat = median(lat), long = median(long))
+  
+  map_render <- plot_usmap(data = dataset2, values = "Area.name", regions = "county", include = areas_fips$fips)
+  map_render <- map_render + geom_label(data = dataset, aes(long, lat, label = Average.wage))
+  map_render <- map_render + labs(title = paste0("Average Hourly Wage for ", first(dataset2$Occupational.title), " accross Washington State"))
+  map_render <- map_render + scale_fill_discrete(name = "Areas") + theme(legend.position = "bottom")
   map_render
 }
 
