@@ -18,7 +18,9 @@ ui <- fluidPage(
                  State in 2018. The data records the occupation title along with the mean hourly and yearly wages, 
                  as well as 25th, 50th and 75th percentile hourly wages. The data was collected from a survey of 4,800 
                  state employers, collecting information on over 800 occupations with a total sample size of 29,300 employees."),
-               p("The data includes employment and wage figures for different regions as well as Washington as a whole. We hope visualizing this data will provide current and graduating college students with valuable information on prospective fields of employment while also providing insight into the diverse economy of Washington State."),
+               p("The data includes employment and wage figures for different regions as well as Washington as a whole. 
+                 We hope visualizing this data will provide current and graduating college students with valuable information 
+                 on prospective fields of employment while also providing insight into the diverse economy of Washington State."),
                plotOutput("areaPlot"),
                h3(class = "title", "Questions"),
                p(tags$ol(
