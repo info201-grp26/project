@@ -1,5 +1,6 @@
 source("process-data.R")
-library("shiny")
+pkgCheck(c("shiny"))
+# library("shiny")
 
 server <- function(input, output) {
   # Overview
