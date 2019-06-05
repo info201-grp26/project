@@ -10,7 +10,7 @@ source("process-data.R")
 ui <- fluidPage(
   theme = shinytheme("yeti"),
   navbarPage(
-    "Occupations in Washington State",
+    "Occupations in Washington State - Group 6:45 (Khoa Luong, Matthew McNeil, Saatvik Arya, Sherry Zhang)",
     tabPanel("Overview",
       mainPanel(
         h3(class = "title", "Overview"),

@@ -5,7 +5,7 @@ pkgCheck(c("shiny"))
 server <- function(input, output) {
   # Overview
   output$areaPlot <- renderPlot(
-    drawMap(areas_fips)
+    drawMap(areas_fips, "right")
   )
   
   # Hourly Wage
@@ -28,7 +28,7 @@ server <- function(input, output) {
    )
    
    output$countyMap1 <- renderPlot(
-     drawMap(areas_fips[areas_fips$Area.name == input$Area, ])
+     drawMap(areas_fips[areas_fips$Area.name == input$Area, ], "none")
    )
   
   # Occupations
@@ -42,10 +42,10 @@ server <- function(input, output) {
   
   # Occupation and Area Lookup
   output$occupationAreaLookup <- renderTable(
-    get_area_occupation_data(input$Area, input$Occupation)
+    get_area_occupation_data(input$Area2, input$Occupation)
   )
   
   output$countyMap2 <- renderPlot(
-    drawMap(areas_fips[areas_fips$Area.name == input$Area2, ])
+    drawMap(areas_fips[areas_fips$Area.name == input$Area2, ], "none")
   )
 }
