@@ -29,45 +29,71 @@ ui <- fluidPage(
              )
     ),
     
-    tabPanel(
-      "Hourly Income",
-      h3(class = "title", "Which area in Washington has the highest average hourly income?"),
-      sidebarLayout(
-        sidebarPanel(
-          
-        ),
-        mainPanel(
-          h4('Description'),
-          p(""),
-          h4("Top N average hourly wages in Washington"),
-          sliderInput(
-            inputId = "hourlyN", 
-            label = "Top N", 
-            value = 1,
-            min = 1, 
-            max = 15),
-          plotOutput("topNPlot"),
-          tableOutput(tbl_df("hourlyWagesTable")),
-          h4("Top 10 average hourly wages for the given Area"),
-          selectInput(
-            inputId = "Area",
-            label = "Area",
-            choices = as.vector(areas_choices)
-          ),
-          tableOutput("hourlyAreaTable")
-        )
-      )
-    ),
-    tabPanel(
-      "Occupations",
-      h3(class = "title", "Which occupations are most popular in Washington State?"),
-        mainPanel(
-          h4('Description'),
-          p(""),
-          #plotOutput("topNPlot"),
-          tableOutput("mostEmployedTable")
-        )
-    ),
+    
+    navbarMenu("Hourly Income",
+               tabPanel(
+                 "WA State",
+                 h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+                 sidebarLayout(
+                   sidebarPanel(
+                     sliderInput(
+                       inputId = "hourlyN", 
+                       label = "Top N", 
+                       value = 1,
+                       min = 1, 
+                       max = 15)
+                   ),
+                   mainPanel(
+                     h4('Description'),
+                     p(""),
+                     h4("Top N average hourly wages in Washington"),
+                     plotOutput("topNPlot"),
+                     tableOutput(tbl_df("hourlyWagesTable"))
+                   )
+                 )
+               ),
+               tabPanel(
+                 "Counties",
+                 h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+                 sidebarLayout(
+                   sidebarPanel(
+                     selectInput(
+                       inputId = "Area",
+                       label = "Area",
+                       choices = as.vector(areas_choices)
+                     )
+                   ),
+                   mainPanel(
+                     h4('Description'),
+                     p(""),
+                     h4("Top 10 average hourly wages for the given Area"),
+                     tableOutput("hourlyAreaTable")
+                   )
+                 )
+          )),
+    
+    navbarMenu("Occupations",
+               tabPanel(
+                 "WA State",
+                 h3(class = "title", "Which occupations are most popular in Washington State?"),
+                 mainPanel(
+                   h4('Description'),
+                   p(""),
+                   #plotOutput("topNPlot"),
+                   tableOutput("mostEmployedWATable")
+                 )
+               ),
+               tabPanel(
+                 "Counties",
+                 h3(class = "title", "Which occupations are most popular in Counties?"),
+                 mainPanel(
+                   h4('Description'),
+                   p(""),
+                   #plotOutput("topNPlot"),
+                   tableOutput("mostEmployedTable")
+                 )
+               )),
+    
     tabPanel(
       "Occupation and Area Lookup",
       h3(class = "title", "Browse occupation by area in the dataset"),

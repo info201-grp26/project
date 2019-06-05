@@ -24,6 +24,10 @@ server <- function(input, output) {
   
   # Occupations
   output$mostEmployedTable <- renderTable(
+    most_employed
+  )
+  
+  output$mostEmployedWATable <- renderTable(
     get_most_employed_WA(10)
   )
   

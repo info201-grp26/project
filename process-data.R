@@ -63,6 +63,20 @@ get_most_employed_WA <- function(n) {
   tbl_df(df)
 }
 
+get_popular_occupation <- function(area) {
+  first(arrange(get_area_data(area), -Employment) %>% pull(Occupational.title)) %>% as.character()
+}
+
+get_employment <- function(area) {
+  first(arrange(get_area_data(area), -Employment) %>% pull(Employment)) %>% as.character()
+}
+
+employment_areas <- as.character(areas_choices[["Area.name"]])
+popular_occupations <- lapply(employment_areas, get_popular_occupation)
+employment <- lapply(employment_areas, get_employment)
+most_employed <- data_frame(Area = employment_areas, Occupation = popular_occupations, Employment = employment)
+
+
 
 
 
