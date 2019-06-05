@@ -1,6 +1,9 @@
-source("pkg-check.R")
+#source("pkg-check.R")
 source("visualization.R")
-pkgCheck(c("dplyr", "tidyr", "usmap"))
+#pkgCheck(c("dplyr", "tidyr", "usmap"))
+library(dplyr)
+library(usmap)
+library(tidyr)
 
 data <- read.csv("data/Occupational_Employment_and_Wage_Estimates.csv", stringsAsFactors = FALSE)
 data <- drop_na(data) # drop rows with incomplete wage data

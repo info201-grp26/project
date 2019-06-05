@@ -1,5 +1,10 @@
-source("pkg-check.R")
-pkgCheck(c("usmap", "ggplot2", "dplyr"))
+#source("pkg-check.R")
+#pkgCheck(c("usmap", "ggplot2", "dplyr"))
+
+library(usmap)
+library(ggplot2)
+library(dplyr)
+
 
 drawMap <- function(area, title, subtitle) {
   map_render <- plot_usmap(data = area, values = "Area.name", regions = "county", include = areas_fips$fips) +

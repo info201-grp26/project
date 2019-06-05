@@ -1,5 +1,8 @@
-source("pkg-check.R")
-pkgCheck(c("shiny", "shinythemes"))
+#source("pkg-check.R")
+#pkgCheck(c("shiny", "shinythemes"))
+
+library(shiny)
+library(shinythemes)
 
 source("process-data.R")
 
@@ -174,8 +177,8 @@ ui <- fluidPage(
                  "Counties",
                  h3(class = "title", "How does the most popular occupation vary across Washington State?"),
                  mainPanel(
-                   h4('Description'),
-                   p(""),
+                   #h4('Description'),
+                   #p(""),
                   plotOutput("mostEmployedPlot"),
                    tableOutput("mostEmployedTable")
                  )
