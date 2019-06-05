@@ -19,15 +19,29 @@ ui <- fluidPage(
            on prospective fields of employment while also providing insight into the diverse economy of Washington State."),
         plotOutput("areaPlot", width = "100%", height = "550px"),
         
-          h3(class = "title", "Questions"),
-          p(tags$ol(
-            tags$li("Which area in Washington has the highest average hourly income?"),
-            tags$li("Which occupations have the highest average hourly incomes?"),
-            tags$li("Which occupation is most popular in each region?"),
-            tags$li("Which area have the most variability in hourly incomes?"),
-            tags$li("Do metropolitan areas have higher wages than non-metropolitan areas?")
-            )
-         )
+        h3(class = "title", "Our Team"),
+        p(tags$ul(
+          tags$li("Khoa Luong: I have been programming since middle school and 
+                  I plan to get a job in the technology field, which is why I 
+                  am very interested to learn about this data."),
+          tags$li("Matthew McNeil: I recently decided learn programming for its 
+                  applications to data science, and want to apply it to work in 
+                  a psychology lab."),
+          tags$li("Saatvik Arya:"),
+          tags$li("Sherry Zhang: I started to learn about programming in college, 
+                  and want to become a UI designer in the future.")
+          )
+        ),
+        
+        h3(class = "title", "Questions"),
+        p(tags$ol(
+          tags$li("Which area in Washington has the highest average hourly income?"),
+          tags$li("Which occupations have the highest average hourly incomes?"),
+          tags$li("Which occupation is most popular in each region?"),
+          tags$li("Which area have the most variability in hourly incomes?"),
+          tags$li("Do metropolitan areas have higher wages than non-metropolitan areas?")
+          )
+        )
       )
     ),
 
@@ -74,7 +88,7 @@ ui <- fluidPage(
             p("This data frame below shows", strong("top 10 / bottom 10 average hourly wages"), 
               "occupations in Washington State counties." ),
             p("Click the drop down menu to select which county you want to learn more about,
-              and learn more about the county geographic information with the map below the menu bar"),
+              along with the corresponding area."),
             fluidRow(
                        column(6,
                         h4(textOutput("topHourlyText")),
@@ -88,9 +102,11 @@ ui <- fluidPage(
                      ),
             
             h4('Description'),
-            p("Observed from the graph,", strong ("Chief Executives ($60/hr - $70/hr)"),"is the occupation with the **highest** 
-              average hourly wage.", strong("Hotel Clerks ($12/hr), Cleaners ($13/hr), Cashiers ($13/hr)"), "are the 
-              occupations with the", strong("lowest"),"average hourly wage.")
+            p("Observed from the graph,", strong ("Chief Executives ($60/hr - $70/hr)"),"is the occupation 
+            with the **highest** average hourly wage.", strong("Hotel Clerks ($12/hr), Cleaners ($13/hr), 
+            Cashiers ($13/hr)"), "are the occupations with the", strong("lowest"),"average hourly wage."),
+            p("Click and drag the slider on the left to see a longer list of the most to least popular occupations 
+               in Washington State.")
             
                    )
                  )
@@ -111,7 +127,9 @@ ui <- fluidPage(
                    ),
                  mainPanel(
                    h4('Description'),
-                   p(""),
+                   p("Data frame below shows the top N most popular occupations in the Washington State. 
+                     Observed from the data frame, the most popular occupation is", strong("retail salesman"), 
+                      ", and", strong("top 5"), "occupations' average income wages are", strong("low ($14/hr - $17/hr)")),
                    
                    tableOutput("mostEmployedWATable")
                  )
