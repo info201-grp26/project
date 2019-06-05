@@ -55,7 +55,7 @@ ui <- fluidPage(
                "in Spokane", strong("($84.88)"), "."),
             p("Click and drag the slider below to see a longer list highest paying occupations
                in Washington State, along with the corresponding area."),
-            h4("Top N average hourly wages in Washington"),
+            h4(textOutput("hourlyNText")),
             plotOutput("topNPlot"),
             tableOutput(tbl_df("hourlyWagesTable"))
           )
@@ -108,7 +108,7 @@ ui <- fluidPage(
                  mainPanel(
                    h4('Description'),
                    p(""),
-#plotOutput("topNPlot"),
+                  plotOutput("mostEmployedPlot"),
                    tableOutput("mostEmployedTable")
                  )
                )),

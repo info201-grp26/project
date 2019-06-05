@@ -30,9 +30,13 @@ server <- function(input, output) {
     get_hourly(input$hourlyN)
   )
 
+  output$hourlyNText <- renderText(
+    paste0("Top ", input$hourlyN,  " average hourly wages in Washington")
+  )
+  
   # Hourly Wage
   output$topNPlot <- renderPlot(
-     selectedMap(get_hourly(input$hourlyN))
+    topWAplot(get_hourly(input$hourlyN))
    )
 
   output$countyMap1 <- renderPlot(
@@ -42,6 +46,10 @@ server <- function(input, output) {
   # Occupations
   output$mostEmployedTable <- renderTable(
     most_employed
+  )
+  
+  output$mostEmployedPlot <- renderPlot(
+    employmentPlot(most_employed)
   )
 
   output$mostEmployedWATable <- renderTable(

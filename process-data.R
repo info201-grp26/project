@@ -31,10 +31,6 @@ get_occupation_data <- function(occupation) filter(data, Occupational.title == o
 get_area_data <- function(area) filter(data, Area.name == area)
 get_area_occupation_data <- function(area, occupation) filter(data, Area.name == area & Occupational.title == occupation)
 
-bartender_data <- get_occupation_data("Bartenders")
-bellingham_data <- get_area_data("Bellingham, WA")
-bellingham_bartender_data <- get_area_occupation_data("Bellingham, WA", "Bartenders")
-
 get_hourly <- function(n) {
   df <- arrange(area_data, -Average.wage) %>% top_n(n, Average.wage)
   df <- select(df, Area.name, Occupational.title, Average.wage)
@@ -70,10 +66,11 @@ get_employment <- function(area) {
   first(arrange(get_area_data(area), -Employment) %>% pull(Employment)) %>% as.character()
 }
 
-employment_areas <- as.character(areas_choices[["Area.name"]])
+employment_areas <- as.character(areas_choices[["Area.name"]])[2:19]
 popular_occupations <- lapply(employment_areas, get_popular_occupation)
 employment <- lapply(employment_areas, get_employment)
 most_employed <- data_frame(Area = employment_areas, Occupation = popular_occupations, Employment = employment)
+
 
 
 
