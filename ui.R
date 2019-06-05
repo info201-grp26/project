@@ -33,7 +33,7 @@ ui <- fluidPage(
                )
              )
     ),
-    
+
     navbarMenu("Hourly Income",
                tabPanel(
                  "WA State",
@@ -41,18 +41,18 @@ ui <- fluidPage(
                  sidebarLayout(
                    sidebarPanel(
                      sliderInput(
-                       inputId = "hourlyN", 
-                       label = "Top N", 
+                       inputId = "hourlyN",
+                       label = "Top N",
                        value = 1,
-                       min = 1, 
+                       min = 1,
                        max = 15)
                    ),
                    mainPanel(
                      h4('Description'),
                      p("The top paying jobs in Washington include", strong("Dentist"), "in 
                        the Greater Seattle Area", strong("($89.81/hr)"), ",", strong("Dentist"),
-                       "in Yakima", strong("($88.33)"), "and", strong("General Practitioner"), 
-                       "in Spokane", strong("($84.88)"),"."),
+                       "in Yakima", strong("($88.33)"), "and", strong("General Practitioner"),
+                       "in Spokane", strong("($84.88)"), "."),
                      p("Click and drag the slider below to see a longer list highest paying occupations
                        in Washington State, along with the corresponding area."),
                      h4("Top N average hourly wages in Washington"),
@@ -89,7 +89,7 @@ ui <- fluidPage(
                    )
                  )
           )),
-    
+
     navbarMenu("Occupations",
                tabPanel(
                  "WA State",
@@ -97,7 +97,7 @@ ui <- fluidPage(
                  mainPanel(
                    h4('Description'),
                    p(""),
-                   #plotOutput("topNPlot"),
+#plotOutput("topNPlot"),
                    tableOutput("mostEmployedWATable")
                  )
                ),
@@ -107,14 +107,14 @@ ui <- fluidPage(
                  mainPanel(
                    h4('Description'),
                    p(""),
-                   #plotOutput("topNPlot"),
+#plotOutput("topNPlot"),
                    tableOutput("mostEmployedTable")
                  )
                )),
     tabPanel(
       "Occupation and Area Lookup",
       h3(class = "title", "Browse occupation by area in the dataset"),
-      #h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+#h3(class = "title", "Which area in Washington has the highest average hourly income?"),
       sidebarLayout(
         sidebarPanel(
           selectInput(
@@ -140,7 +140,7 @@ ui <- fluidPage(
       h3(class = "title", "Which area have the most variability in hourly incomes?"),
       sidebarLayout(
         sidebarPanel(
-          
+
         ),
         mainPanel(
           h4('Description'),
@@ -153,7 +153,7 @@ ui <- fluidPage(
       h3(class = "title", "Do metropolitan areas have higher wages than non-metropolitan areas?"),
       sidebarLayout(
         sidebarPanel(
-          
+
         ),
         mainPanel(
           h4('Description'),
