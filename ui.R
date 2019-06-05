@@ -74,7 +74,7 @@ ui <- fluidPage(
             p("This data frame below shows", strong("top 10 / bottom 10 average hourly wages"), 
               "occupations in Washington State counties." ),
             p("Click the drop down menu to select which county you want to learn more about,
-              and learn more about the county geographic information with the map below the menu bar"),
+              along with the corresponding area."),
             fluidRow(
                        column(6,
                         h4(textOutput("topHourlyText")),
@@ -88,9 +88,11 @@ ui <- fluidPage(
                      ),
             
             h4('Description'),
-            p("Observed from the graph,", strong ("Chief Executives ($60/hr - $70/hr)"),"is the occupation with the **highest** 
-              average hourly wage.", strong("Hotel Clerks ($12/hr), Cleaners ($13/hr), Cashiers ($13/hr)"), "are the 
-              occupations with the", strong("lowest"),"average hourly wage.")
+            p("Observed from the graph,", strong ("Chief Executives ($60/hr - $70/hr)"),"is the occupation 
+            with the **highest** average hourly wage.", strong("Hotel Clerks ($12/hr), Cleaners ($13/hr), 
+            Cashiers ($13/hr)"), "are the occupations with the", strong("lowest"),"average hourly wage."),
+            p("Click and drag the slider on the left to see a longer list of the most to least popular occupations 
+               in Washington State.")
             
                    )
                  )
@@ -111,7 +113,9 @@ ui <- fluidPage(
                    ),
                  mainPanel(
                    h4('Description'),
-                   p(""),
+                   p("Data frame below shows the top N most popular occupations in the Washington State. 
+                     Observed from the data frame, the most popular occupation is", strong("retail salesman"), 
+                      ", and", strong("top 5"), "occupations' average income wages are", strong("low ($14/hr - $17/hr)")),
                    
                    tableOutput("mostEmployedWATable")
                  )
