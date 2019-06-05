@@ -1,12 +1,19 @@
-source("pkg-check.R")
-pkgCheck(c("shiny", "shinythemes"))
+#source("pkg-check.R")
+#pkgCheck(c("shiny", "shinythemes"))
+
+library(shiny)
+library(shinythemes)
 
 source("process-data.R")
 
 ui <- fluidPage(
   theme = shinytheme("yeti"),
+  tags$style(type="text/css",
+             ".shiny-output-error { visibility: hidden; }",
+             ".shiny-output-error:before { visibility: hidden; }"
+  ),
   navbarPage(
-    "Occupations in Washington State - Group 6:45 (Khoa Luong, Matthew McNeil, Saatvik Arya, Sherry Zhang)",
+    "Occupations in Washington State",
     tabPanel("Overview",
       mainPanel(
         h3(class = "title", "Overview"),
@@ -17,7 +24,7 @@ ui <- fluidPage(
         p("The data includes employment and wage figures for different regions as well as Washington as a whole. 
            We hope visualizing this data will provide current and graduating college students with valuable information 
            on prospective fields of employment while also providing insight into the diverse economy of Washington State."),
-        plotOutput("areaPlot", width = "100%", height = "550px"),
+        #plotOutput("areaPlot", width = "100%", height = "550px"),
         
         h3(class = "title", "Our Team"),
         p(tags$ul(
@@ -27,20 +34,59 @@ ui <- fluidPage(
           tags$li("Matthew McNeil: I recently decided learn programming for its 
                   applications to data science, and want to apply it to work in 
                   a psychology lab."),
-          tags$li("Saatvik Arya:"),
+          tags$li("Saatvik Arya: I started learning programming in middle school and I want to work as a Product Manager in the future."),
           tags$li("Sherry Zhang: I started to learn about programming in college, 
                   and want to become a UI designer in the future.")
           )
         ),
-        
+      
         h3(class = "title", "Questions"),
         p(tags$ol(
           tags$li("Which area in Washington has the highest average hourly income?"),
           tags$li("Which occupations have the highest average hourly incomes?"),
+          tags$li("Which occupations have the lowest average hourly incomes?"),
           tags$li("Which occupation is most popular in each region?"),
-          tags$li("Which area have the most variability in hourly incomes?"),
-          tags$li("Do metropolitan areas have higher wages than non-metropolitan areas?")
-          )
+          tags$li("How do the hourly incomes vary across Washington State for a give occupation?")
+        )
+        )
+      )
+    ),
+    tabPanel("Region",
+             mainPanel(
+               fluidRow(
+                 column(12, plotOutput("areaPlot", width = "100%", height = "600px"))
+               )
+               
+             )
+    ),
+    
+    tabPanel(
+      "Occupation and Area Lookup",
+      h3(class = "title", "Browse occupation by area in the dataset"),
+      #h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+      sidebarLayout(
+        sidebarPanel(
+          selectInput(
+            inputId = "Area2",
+            label = "Area",
+            choices = as.character(areas_choices[["Area.name"]])[2:19]
+          ),
+          sliderInput(
+            inputId = "wageInput",
+            label = "Hourly wage ($/hr)",
+            value = 15.00,
+            min = 0,
+            max = 100
+          ),
+          uiOutput("areaOccupations"),
+          plotOutput("countyMap2")
+        ),
+        mainPanel(
+          uiOutput("hourlyWage"),
+          uiOutput("annualWage"),
+          uiOutput("highestWageArea"),
+          plotOutput("occupationPlot"),
+          plotOutput("variablePlot")
         )
       )
     ),
@@ -138,43 +184,48 @@ ui <- fluidPage(
                  "Counties",
                  h3(class = "title", "How does the most popular occupation vary across Washington State?"),
                  mainPanel(
-                   h4('Description'),
-                   p(""),
+                   #h4('Description'),
+                   #p(""),
                   plotOutput("mostEmployedPlot"),
                    tableOutput("mostEmployedTable")
                  )
-               )),
-    tabPanel(
-      "Occupation and Area Lookup",
-      h3(class = "title", "Browse occupation by area in the dataset"),
-#h3(class = "title", "Which area in Washington has the highest average hourly income?"),
-      sidebarLayout(
-        sidebarPanel(
-          selectInput(
-            inputId = "Area2",
-            label = "Area",
-            choices = as.vector(areas_choices)
-          ),
-          selectInput(
-            inputId = "Occupation",
-            label = "Occupation",
-            choices = as.vector(occupations)
-          ),
-          sliderInput(
-            inputId = "wageInput",
-            label = "Hourly wage ($/hr)",
-            value = 15.00,
-            min = 0,
-            max = 100,
-          ),
-          plotOutput("countyMap2")
-        ),
-        mainPanel(
-          h4(textOutput("occupationAreaLookup")),
-          plotOutput("variablePlot")
-        )
-      )
-    )
+# <<<<<<< HEAD
+#                )),
+#     tabPanel(
+#       "Occupation and Area Lookup",
+#       h3(class = "title", "Browse occupation by area in the dataset"),
+# #h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+#       sidebarLayout(
+#         sidebarPanel(
+#           selectInput(
+#             inputId = "Area2",
+#             label = "Area",
+#             choices = as.vector(areas_choices)
+#           ),
+#           selectInput(
+#             inputId = "Occupation",
+#             label = "Occupation",
+#             choices = as.vector(occupations)
+#           ),
+#           sliderInput(
+#             inputId = "wageInput",
+#             label = "Hourly wage ($/hr)",
+#             value = 15.00,
+#             min = 0,
+#             max = 100,
+#           ),
+#           plotOutput("countyMap2")
+#         ),
+#         mainPanel(
+#           h4(textOutput("occupationAreaLookup")),
+#           plotOutput("variablePlot")
+#         )
+#       )
+#     )
+# =======
+               )
+              )
+# >>>>>>> 66de65f985aba7bc370385153ee9a46ccb824fb6
   )
 )
 

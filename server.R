@@ -1,5 +1,7 @@
-source("process-data.R")
-pkgCheck(c("shiny"))
+#source("process-data.R")
+#pkgCheck(c("shiny"))
+
+library(shiny)
 
 server <- function(input, output) {
   # Overview
@@ -7,7 +9,27 @@ server <- function(input, output) {
     regionPlot(areas_fips) 
     #drawMap(areas_fips, "right")
   )
+  
+  area_occupations <- reactive({
+    get_area_occupations(input$Area2)
+  })
+  
+  occupation_data <- reactive({
+    get_occupation_data(input$Occupation)
+  })
+  
+  occupation_area_data <- reactive({
+    get_area_occupation_data(input$Area2, input$Occupation)
+  })
 
+  output$areaOccupations <- renderUI(
+    selectInput(
+      inputId = "Occupation",
+      label = "Occupation",
+      choices = as.vector(area_occupations())
+    )
+  )
+  
   # Hourly Wage
   output$hourlyAreaTable <- renderTable(
     get_area_hourly(10, input$Area)
@@ -49,7 +71,7 @@ server <- function(input, output) {
   )
   
   output$mostEmployedPlot <- renderPlot(
-    employmentPlot(most_employed)
+    employmentPlot()
   )
 
   output$mostEmployedWATable <- renderTable(
@@ -57,9 +79,22 @@ server <- function(input, output) {
   )
   
   # Occupation and Area Lookup
-  output$occupationAreaLookup <- renderText(
-    paste(paste0("The Averge Hourly Wage for ", input$Occupation, " in ", input$Area2, " is $", get_area_occupation_data(input$Area2, input$Occupation)$Average.wage),
-                 paste0("The Annual Wage is $", get_area_occupation_data(input$Area2, input$Occupation)$Annual.wage), sep = "\n")
+  output$hourlyWage <- renderUI(
+    h4(paste0("The Averge Hourly Wage for ", input$Occupation, " in ", input$Area2, " is $", occupation_area_data()$Average.wage))
+  )
+  
+  output$annualWage <- renderUI(
+    h4(paste0("The Annual Wage is $", occupation_area_data()$Annual.wage))
+  )
+  
+  output$highestWageArea <- renderUI(
+    h4(paste0(filter(occupation_data(), Average.wage == max(Average.wage)) %>% select(Area.name), 
+              " has the highest Average hourly wage for ", input$Occupation, " of $", 
+              filter(occupation_data(), Average.wage == max(Average.wage)) %>% select(Average.wage)))
+  )
+  
+  output$occupationPlot <- renderPlot(
+    occupationPlot(occupation_data())
   )
   
   output$countyMap2 <- renderPlot(

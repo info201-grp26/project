@@ -1,6 +1,9 @@
-source("pkg-check.R")
+#source("pkg-check.R")
 source("visualization.R")
-pkgCheck(c("dplyr", "tidyr", "usmap"))
+#pkgCheck(c("dplyr", "tidyr", "usmap"))
+library(dplyr)
+library(usmap)
+library(tidyr)
 
 data <- read.csv("data/Occupational_Employment_and_Wage_Estimates.csv", stringsAsFactors = FALSE)
 data <- drop_na(data) # drop rows with incomplete wage data
@@ -16,7 +19,7 @@ data$Area.name[data$Area.name == "Eastern WA Nonmetropolitan Area (NMA)"] <- "Ea
 
 
 areas_choices <- distinct(select(data, Area.name))
-occupations <- distinct(select(data, Occupational.title))
+occupations <- distinct(select(state_data, Occupational.title))
 
 # add fip codes to data frame 
 areas_fips <- areas_choices
@@ -34,8 +37,9 @@ state_occupations <- distinct(select(state_data, Occupational.title))
 
 area_data <- filter(data, Area.code != 53) # filter out Washington-State rows
 
-get_occupation_data <- function(occupation) filter(data, Occupational.title == occupation)
+get_occupation_data <- function(occupation) filter(data, Occupational.title == occupation) %>% filter(Area.name != "Washington State")
 get_area_data <- function(area) filter(data, Area.name == area)
+get_area_occupations <- function(area) filter(data, Area.name == area) %>% pull(Occupational.title)
 get_hr_wage <- function(df) df$Average.wage
 get_annual_wage <- function(df) df$Annual.wage
 get_area_occupation_data <- function(area, occupation) filter(data, Area.name == area & Occupational.title == occupation)
