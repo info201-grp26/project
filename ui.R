@@ -26,7 +26,8 @@ ui <- fluidPage(
                   am very interested to learn about this data"),
           tags$li("Matthew McNeil:"),
           tags$li("Saatvik Arya:"),
-          tags$li("Sherry Zhang:")
+          tags$li("Sherry Zhang: I started to learn about programming in college, 
+                  and want to become a UI designer in the future.")
           )
         ),
         
