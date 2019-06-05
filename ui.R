@@ -23,8 +23,10 @@ ui <- fluidPage(
         p(tags$ul(
           tags$li("Khoa Luong: I have been programming since middle school and 
                   I plan to get a job in the technology field, which is why I 
-                  am very interested to learn about this data"),
-          tags$li("Matthew McNeil:"),
+                  am very interested to learn about this data."),
+          tags$li("Matthew McNeil: I recently decided learn programming for its 
+                  applications to data science, and want to apply it to work in 
+                  a psychology lab."),
           tags$li("Saatvik Arya:"),
           tags$li("Sherry Zhang: I started to learn about programming in college, 
                   and want to become a UI designer in the future.")
