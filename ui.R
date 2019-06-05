@@ -124,10 +124,6 @@ ui <- fluidPage(
               plotOutput("countyMap1")
             ),
           mainPanel(
-            p("This data frame below shows", strong("top 10 / bottom 10 average hourly wages"), 
-              "occupations in Washington State counties." ),
-            p("Click the drop down menu to select which county you want to learn more about,
-              along with the corresponding area."),
             fluidRow(
                        column(6,
                         h4(textOutput("topHourlyText")),
@@ -141,6 +137,10 @@ ui <- fluidPage(
                      ),
             
             h4('Description'),
+            p("This data frame above shows", strong("top 10 / bottom 10 average hourly wages"), 
+              "occupations in Washington State counties." ),
+            p("Click the drop down menu on the left to select which county you want to learn more about,
+              along with the corresponding area."),
             p("Observed from the graph,", strong ("Chief Executives ($60/hr - $70/hr)"),"is the occupation 
             with the **highest** average hourly wage.", strong("Hotel Clerks ($12/hr), Cleaners ($13/hr), 
             Cashiers ($13/hr)"), "are the occupations with the", strong("lowest"),"average hourly wage."),
@@ -177,8 +177,10 @@ ui <- fluidPage(
                  "Counties",
                  h3(class = "title", "How does the most popular occupation vary across Washington State?"),
                  mainPanel(
-                   #h4('Description'),
-                   #p(""),
+                   h4('Description'),
+                   p("The map below shows the geographic information of the top 6 popular occupations in Washington state. 
+                     Each job is color coded with labels. Observed from the map,", 
+                     strong("Food Workers"), "and", strong("Retail Salesperson"), " are the two most popular occupations"),
                   plotOutput("mostEmployedPlot"),
                    tableOutput("mostEmployedTable")
                  )
