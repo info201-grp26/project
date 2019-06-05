@@ -71,6 +71,10 @@ ui <- fluidPage(
               plotOutput("countyMap1")
             ),
           mainPanel(
+            p("This data frame below shows **top 10 / bottom 10 average hourly wages** 
+              occupations in Washington State counties." ),
+            p("Click the drop down menu to select which county you want to learn more about,
+              and learn more about the county geographic information with the map below the menu bar"),
             fluidRow(
                        column(6,
                         h4(textOutput("topHourlyText")),
@@ -83,7 +87,9 @@ ui <- fluidPage(
                        )
                      ),
             h4('Description'),
-            p("")
+            p("Observed from the graph, **Chief Executives ($60/hr - $70/hr)** is the occupation with the **highest** 
+              average hourly wage. **Hotel Clerks ($12/hr)**, **Cleaners ($13/hr)**, **Cashiers ($13/hr)** are the 
+              occupations with the **lowest** average hourly wage.")
                    )
                  )
           )),
