@@ -56,7 +56,7 @@ get_area_hourly <- function(n, area) {
 #top10 <- get_highest_hourly(10)
 #selectedMap(top10)
 
-get_employed_WA <- function(n) {
+get_most_employed_WA <- function(n) {
   df <- top_n(state_data, n, Employment)
   df <- select(df, Occupational.title, Employment)
   names(df) <- c("Occupation", "# Employed")
