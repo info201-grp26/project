@@ -41,10 +41,10 @@ ui <- fluidPage(
         p(tags$ol(
           tags$li("Which area in Washington has the highest average hourly income?"),
           tags$li("Which occupations have the highest average hourly incomes?"),
+          tags$li("Which occupations have the lowest average hourly incomes?"),
           tags$li("Which occupation is most popular in each region?"),
-          tags$li("Which area have the most variability in hourly incomes?"),
-          tags$li("Do metropolitan areas have higher wages than non-metropolitan areas?")
-          )
+          tags$li("How do the hourly incomes vary across Washington State for a give occupation?")
+        )
         )
       )
     ),
