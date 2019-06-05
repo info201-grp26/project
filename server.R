@@ -82,12 +82,17 @@ server <- function(input, output) {
   )
   
   output$annualWage <- renderUI(
-    h4(paste0("The Annual Wage is $", occupation_area_data()$Annual.wage)),
+    h4(paste0("The Annual Wage is $", occupation_area_data()$Annual.wage))
   )
   
+  output$highestWageArea <- renderUI(
+    h4(paste0(filter(occupation_data(), Average.wage == max(Average.wage)) %>% select(Area.name), 
+              " has the highest Average hourly wage for ", input$Occupation, " of $", 
+              filter(occupation_data(), Average.wage == max(Average.wage)) %>% select(Average.wage)))
+  )
   
   output$occupationPlot <- renderPlot(
-    occupationPlot(get_occupation_data(input$Occupation))
+    occupationPlot(occupation_data())
   )
   
   output$countyMap2 <- renderPlot(

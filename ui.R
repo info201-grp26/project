@@ -74,6 +74,7 @@ ui <- fluidPage(
         mainPanel(
           uiOutput("hourlyWage"),
           uiOutput("annualWage"),
+          uiOutput("highestWageArea"),
           plotOutput("occupationPlot")
           
         )
