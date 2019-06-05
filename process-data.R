@@ -36,7 +36,7 @@ bellingham_data <- get_area_data("Bellingham, WA")
 bellingham_bartender_data <- get_area_occupation_data("Bellingham, WA", "Bartenders")
 
 get_hourly <- function(n) {
-  df <- arrange(area_data, Average.wage) %>% top_n(n, Average.wage)
+  df <- arrange(area_data, -Average.wage) %>% top_n(n, Average.wage)
   df <- select(df, Area.name, Occupational.title, Average.wage)
   names(df) <- c("Area", "Occupation", "Avg. Hourly Wage")
   df
