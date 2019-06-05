@@ -5,7 +5,7 @@ server <- function(input, output) {
   # Overview
   output$areaPlot <- renderPlot(
     regionPlot(areas_fips) 
-    #drawMap(areas_fips, "Washington State counties, highlighted by statistical divisions", "This includes some counties from Idaho and Oregon")
+    #drawMap(areas_fips, "right")
   )
 
   # Hourly Wage
@@ -57,7 +57,6 @@ server <- function(input, output) {
   )
   
   # Occupation and Area Lookup
-
   output$occupationAreaLookup <- renderText(
     paste(paste0("The Averge Hourly Wage for ", input$Occupation, " in ", input$Area2, " is $", get_area_occupation_data(input$Area2, input$Occupation)$Average.wage),
                  paste0("The Annual Wage is $", get_area_occupation_data(input$Area2, input$Occupation)$Annual.wage), sep = "\n")
@@ -66,4 +65,6 @@ server <- function(input, output) {
   output$countyMap2 <- renderPlot(
     drawMap(areas_fips[areas_fips$Area.name == input$Area2,], input$Area2, "")
   )
+
+  
 }

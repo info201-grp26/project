@@ -1,7 +1,7 @@
 source("pkg-check.R")
 pkgCheck(c("usmap", "ggplot2", "dplyr"))
 
-drawMap <- function(area, title, subtitle, legend_position) {
+drawMap <- function(area, title, subtitle) {
   counties_data <- counties %>% group_by(county_fips) %>% summarise(lat = mean(lat), long = mean(long))
   area_map <- areas_fips 
   names(area_map)[2] <- "county_fips"
