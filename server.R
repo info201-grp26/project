@@ -10,21 +10,29 @@ server <- function(input, output) {
   
   # Hourly Wage
   output$hourlyAreaTable <- renderTable(
-    get_highest_area_hourly(10, input$Area)
+    get_area_hourly(10, input$Area)
+  )
+  
+  output$hourlyAreaTableBottom <- renderTable(
+    get_area_hourly(-10, input$Area)
   )
   
   # Hourly Wage
   output$hourlyWagesTable <- renderTable(
-    get_highest_hourly(input$hourlyN)
+    get_hourly(input$hourlyN)
   )
   
   # Hourly Wage
-  output$topNPlot<- renderPlot(
-    selectedMap(get_highest_hourly(input$hourlyN))
-  )
+  # output$topNPlot<- renderPlot(
+  #   selectedMap(get_highest_hourly(input$hourlyN))
+  # )
   
   # Occupations
   output$mostEmployedTable <- renderTable(
+    most_employed
+  )
+  
+  output$mostEmployedWATable <- renderTable(
     get_most_employed_WA(10)
   )
   
