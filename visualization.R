@@ -62,8 +62,7 @@ employmentPlot <- function() {
 }
 
 occupationPlot <- function(dataset) {
-  dataset <- dataset %>% select(Area.name, Occupational.title, Average.wage)
-  dataset <- left_join(dataset, areas_fips, by = "Area.name")
+  dataset <- dataset %>% select(Area.name, Occupational.title, Average.wage) %>%  left_join(areas_fips, by = "Area.name")
   dataset2 <- dataset
   
   dataset <- left_join(dataset, counties_data, by = "fips")
