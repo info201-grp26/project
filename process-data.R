@@ -62,8 +62,8 @@ get_area_hourly <- function(n, area) {
 get_employed_WA <- function(n) {
   df <- top_n(state_data, n, Employment)
   df <- arrange(state_data, -Employment) %>% top_n(n, Employment)
-  df <- select(df, Occupational.title, Employment)
-  names(df) <- c("Occupation", "# Employed")
+  df <- select(df, Occupational.title, Employment, Average.wage, Annual.wage)
+  names(df) <- c("Occupation", "# Employed", "Average Hourly Wage", "Annual Wage")
   tbl_df(df)
 }
 
