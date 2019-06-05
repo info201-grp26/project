@@ -1,7 +1,3 @@
-# library(plotly)
-# library(shiny)
-# library(shinythemes)
-
 source("pkg-check.R")
 pkgCheck(c("shiny", "shinythemes"))
 
@@ -21,7 +17,8 @@ ui <- fluidPage(
         p("The data includes employment and wage figures for different regions as well as Washington as a whole. 
            We hope visualizing this data will provide current and graduating college students with valuable information 
            on prospective fields of employment while also providing insight into the diverse economy of Washington State."),
-        plotOutput("areaPlot"),
+        plotOutput("areaPlot", width = "100%", height = "550px"),
+        
           h3(class = "title", "Questions"),
           p(tags$ol(
             tags$li("Which area in Washington has the highest average hourly income?"),
@@ -131,9 +128,7 @@ ui <- fluidPage(
           plotOutput("countyMap2")
         ),
         mainPanel(
-          h4('Description'),
-          p(""),
-          tableOutput("occupationAreaLookup")
+          h4(textOutput("occupationAreaLookup"))
         )
       )
     ),

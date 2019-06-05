@@ -1,11 +1,11 @@
 source("process-data.R")
 pkgCheck(c("shiny"))
-# library("shiny")
 
 server <- function(input, output) {
   # Overview
   output$areaPlot <- renderPlot(
-    drawMap(areas_fips, "Washington State counties, highlighted by statistical divisions", "This includes some counties from Idaho and Oregon")
+    regionPlot(areas_fips) 
+    #drawMap(areas_fips, "Washington State counties, highlighted by statistical divisions", "This includes some counties from Idaho and Oregon")
   )
 
   # Hourly Wage
@@ -55,13 +55,15 @@ server <- function(input, output) {
   output$mostEmployedWATable <- renderTable(
     get_employed_WA(10)
   )
-
+  
   # Occupation and Area Lookup
-  output$occupationAreaLookup <- renderTable(
-    get_area_occupation_data(input$Area, input$Occupation)
-  )
 
+  output$occupationAreaLookup <- renderText(
+    paste(paste0("The Averge Hourly Wage for ", input$Occupation, " in ", input$Area2, " is $", get_area_occupation_data(input$Area2, input$Occupation)$Average.wage),
+                 paste0("The Annual Wage is $", get_area_occupation_data(input$Area2, input$Occupation)$Annual.wage), sep = "\n")
+  )
+  
   output$countyMap2 <- renderPlot(
-    drawMap(areas_fips[areas_fips$Area.name == input$Area2,], "Washington State counties, highlighted by statistical divisions", "This includes some counties from Idaho and Oregon")
+    drawMap(areas_fips[areas_fips$Area.name == input$Area2,], input$Area2, "")
   )
 }

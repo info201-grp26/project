@@ -1,12 +1,19 @@
 source("pkg-check.R")
 source("visualization.R")
 pkgCheck(c("dplyr", "tidyr", "usmap"))
-# library(dplyr)
-# library(tidyr)
-# library(usmap)
 
-data <- read.csv("data/Occupational_Employment_and_Wage_Estimates.csv")
+data <- read.csv("data/Occupational_Employment_and_Wage_Estimates.csv", stringsAsFactors = FALSE)
 data <- drop_na(data) # drop rows with incomplete wage data
+
+data$Area.name[data$Area.name == "Seattle-Bellevue-Everett, WA Metropolitan Division"] <- "Seattle-Bellevue-Everett, WA"
+data$Area.name[data$Area.name == "Tacoma-Lakewood, WA Metropolitan Division"] <- "Tacoma-Lakewood, WA"
+data$Area.name[data$Area.name == "Spokane-Spokane Valley, WA"] <- "Spokane Valley, WA"
+data$Area.name[data$Area.name == "Northwestern WA Nonmetropolitan Area (NMA)"] <- "Northwestern WA"
+data$Area.name[data$Area.name == "Southwestern WA Nonmetropolitan Area (NMA)"] <- "Southwestern WA"
+data$Area.name[data$Area.name == "Central WA Nonmetropolitan Area (NMA)"] <- "Central WA"
+data$Area.name[data$Area.name == "Eastern WA Nonmetropolitan Area (NMA)"] <- "Eastern WA"
+
+
 
 areas_choices <- distinct(select(data, Area.name))
 occupations <- distinct(select(data, Occupational.title))
@@ -29,6 +36,8 @@ area_data <- filter(data, Area.code != 53) # filter out Washington-State rows
 
 get_occupation_data <- function(occupation) filter(data, Occupational.title == occupation)
 get_area_data <- function(area) filter(data, Area.name == area)
+get_hr_wage <- function(df) df$Average.wage
+get_annual_wage <- function(df) df$Annual.wage
 get_area_occupation_data <- function(area, occupation) filter(data, Area.name == area & Occupational.title == occupation)
 
 get_hourly <- function(n) {
