@@ -7,7 +7,7 @@ library(shinythemes)
 source("process-data.R")
 
 ui <- fluidPage(
-  theme = shinytheme("yeti"),
+  theme = shinytheme("paper"),
   tags$style(type="text/css",
              ".shiny-output-error { visibility: hidden; }",
              ".shiny-output-error:before { visibility: hidden; }"
