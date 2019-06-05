@@ -1,13 +1,14 @@
 source("pkg-check.R")
 pkgCheck(c("usmap", "ggplot2", "dplyr"))
-
+library(urbnmapr)
 
 drawMap <- function(area) {
-  #area_map <- area
-  #names(area_map)[2] <- "county_fips"
-  #area_map <- left_join(area_map, counties, by = "county_fips")
+  area_map <- area
+  names(area_map)[2] <- "county_fips"
+  View(counties)
+  area_map <- left_join(area_map, counties, by = "county_fips")
   
-  map_render <- plot_usmap(data = area, values = "Area.name", regions = "county", include = area$fips) +
+  map_render <- plot_usmap(data = area, values = "Area.name", regions = "county", include = area$fips) + 
                 labs(title = "Washington State, metropolitan divisions (MD), metropolitan statistical areas (MSA) and nonmetropolitan areas (NMA)", 
                      subtitle = "This includes some counties from Idaho and Oregon") + 
                 #geom_text(data = area_map, aes(label = ~Area.name, x = ~lat, y = ~long)) + 
