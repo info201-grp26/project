@@ -10,7 +10,7 @@ ui <- fluidPage(
              ".shiny-output-error:before { visibility: hidden; }"
   ),
   navbarPage(
-    "Occupations in Washington State - Group 6:45 (Khoa Luong, Matthew McNeil, Saatvik Arya, Sherry Zhang)",
+    "Occupations in Washington State",
     tabPanel("Overview",
       mainPanel(
         h3(class = "title", "Overview"),
@@ -21,7 +21,7 @@ ui <- fluidPage(
         p("The data includes employment and wage figures for different regions as well as Washington as a whole. 
            We hope visualizing this data will provide current and graduating college students with valuable information 
            on prospective fields of employment while also providing insight into the diverse economy of Washington State."),
-        plotOutput("areaPlot", width = "100%", height = "550px"),
+        #plotOutput("areaPlot", width = "100%", height = "550px"),
         
         h3(class = "title", "Our Team"),
         p(tags$ul(
@@ -36,7 +36,7 @@ ui <- fluidPage(
                   and want to become a UI designer in the future.")
           )
         ),
-        
+      
         h3(class = "title", "Questions"),
         p(tags$ol(
           tags$li("Which area in Washington has the highest average hourly income?"),
@@ -45,6 +45,37 @@ ui <- fluidPage(
           tags$li("Which area have the most variability in hourly incomes?"),
           tags$li("Do metropolitan areas have higher wages than non-metropolitan areas?")
           )
+        )
+      )
+    ),
+    tabPanel("Region",
+             mainPanel(
+               fluidRow(
+                 column(12, plotOutput("areaPlot", width = "100%", height = "600px"))
+               )
+               
+             )
+    ),
+    
+    tabPanel(
+      "Occupation and Area Lookup",
+      h3(class = "title", "Browse occupation by area in the dataset"),
+      #h3(class = "title", "Which area in Washington has the highest average hourly income?"),
+      sidebarLayout(
+        sidebarPanel(
+          selectInput(
+            inputId = "Area2",
+            label = "Area",
+            choices = as.character(areas_choices[["Area.name"]])[2:19]
+          ),
+          uiOutput("areaOccupations"),
+          plotOutput("countyMap2")
+        ),
+        mainPanel(
+          uiOutput("hourlyWage"),
+          uiOutput("annualWage"),
+          plotOutput("occupationPlot")
+          
         )
       )
     ),
@@ -147,29 +178,8 @@ ui <- fluidPage(
                   plotOutput("mostEmployedPlot"),
                    tableOutput("mostEmployedTable")
                  )
-               )),
-    tabPanel(
-      "Occupation and Area Lookup",
-      h3(class = "title", "Browse occupation by area in the dataset"),
-#h3(class = "title", "Which area in Washington has the highest average hourly income?"),
-      sidebarLayout(
-        sidebarPanel(
-          selectInput(
-            inputId = "Area2",
-            label = "Area",
-            choices = as.character(areas_choices[["Area.name"]])[2:19]
-          ),
-          uiOutput("areaOccupations"),
-          plotOutput("countyMap2")
-        ),
-        mainPanel(
-          uiOutput("hourlyWage"),
-          uiOutput("annualWage"),
-          plotOutput("occupationPlot")
-          
-        )
-      )
-    )
+               )
+              )
   )
 )
 
