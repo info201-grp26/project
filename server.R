@@ -23,9 +23,9 @@ server <- function(input, output) {
   )
   
   # Hourly Wage
-  # output$topNPlot<- renderPlot(
-  #   selectedMap(get_highest_hourly(input$hourlyN))
-  # )
+   output$topNPlot<- renderPlot(
+     selectedMap(get_highest_hourly(input$hourlyN))
+   )
   
   # Occupations
   output$mostEmployedTable <- renderTable(
