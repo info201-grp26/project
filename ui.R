@@ -19,15 +19,26 @@ ui <- fluidPage(
            on prospective fields of employment while also providing insight into the diverse economy of Washington State."),
         plotOutput("areaPlot", width = "100%", height = "550px"),
         
-          h3(class = "title", "Questions"),
-          p(tags$ol(
-            tags$li("Which area in Washington has the highest average hourly income?"),
-            tags$li("Which occupations have the highest average hourly incomes?"),
-            tags$li("Which occupation is most popular in each region?"),
-            tags$li("Which area have the most variability in hourly incomes?"),
-            tags$li("Do metropolitan areas have higher wages than non-metropolitan areas?")
-            )
-         )
+        h3(class = "title", "Our Team"),
+        p(tags$ul(
+          tags$li("Khoa Luong: I have been programming since middle school and 
+                  I plan to get a job in the technology field, which is why I 
+                  am very interested to learn about this data"),
+          tags$li("Matthew McNeil:"),
+          tags$li("Saatvik Arya:"),
+          tags$li("Sherry Zhang:")
+          )
+        ),
+        
+        h3(class = "title", "Questions"),
+        p(tags$ol(
+          tags$li("Which area in Washington has the highest average hourly income?"),
+          tags$li("Which occupations have the highest average hourly incomes?"),
+          tags$li("Which occupation is most popular in each region?"),
+          tags$li("Which area have the most variability in hourly incomes?"),
+          tags$li("Do metropolitan areas have higher wages than non-metropolitan areas?")
+          )
+        )
       )
     ),
 
