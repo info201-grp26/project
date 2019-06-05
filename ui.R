@@ -40,12 +40,12 @@ ui <- fluidPage(
         h3(class = "title", "Which area in Washington has the highest average hourly income?"),
         sidebarLayout(
           sidebarPanel(
-          sliderInput(
-            inputId = "hourlyN", 
-            label = "Top N", 
-            value = 1,
-            min = 1, 
-            max = 15)
+            sliderInput(
+              inputId = "hourlyN", 
+              label = "Top N", 
+              value = 1,
+              min = 1, 
+              max = 15)
           ),
           mainPanel(
             h4('Description'),
@@ -70,7 +70,8 @@ ui <- fluidPage(
                 inputId = "Area",
                 label = "Area",
                 choices = as.vector(areas_choices)
-              )
+              ),
+              plotOutput("countyMap1")
             ),
           mainPanel(
             h4('Description'),

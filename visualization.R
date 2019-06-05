@@ -8,7 +8,7 @@ drawMap <- function(area) {
   #area_map <- left_join(area_map, counties, by = "county_fips")
   
   map_render <- plot_usmap(data = area, values = "Area.name", regions = "county", include = areas_fips$fips) +
-                labs(title = "Washington State, metropolitan divisions (MD), metropolitan statistical areas (MSA) and nonmetropolitan areas (NMA)", 
+                labs(title = "Washington State counties, highlighted by statistical divisions", 
                      subtitle = "This includes some counties from Idaho and Oregon") + 
                 #geom_text(data = area_map, aes(label = ~Area.name, x = ~lat, y = ~long)) + 
                 scale_fill_discrete(name="Areas") + theme(legend.position = "none")

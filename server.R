@@ -27,7 +27,7 @@ server <- function(input, output) {
      selectedMap(get_hourly(input$hourlyN))
    )
    
-   output$countyMap <- renderPlot(
+   output$countyMap1 <- renderPlot(
      drawMap(areas_fips[areas_fips$Area.name == input$Area, ])
    )
   
