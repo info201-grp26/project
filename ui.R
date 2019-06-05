@@ -34,8 +34,6 @@ ui <- fluidPage(
              )
     ),
     
-<<<<<<< HEAD
-    
     navbarMenu("Hourly Income",
                tabPanel(
                  "WA State",
