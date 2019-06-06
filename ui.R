@@ -99,7 +99,8 @@ ui <- fluidPage(
                  )
                ),
                mainPanel(
-                 plotOutput("variablePlot")
+                 plotOutput("variablePlot"),
+                 textOutput("variableText")
                )
              )
     ),

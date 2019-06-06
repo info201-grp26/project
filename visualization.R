@@ -73,10 +73,14 @@ drawBox <- function(dataset, datapoint) {
   ymax = dataset$X75th.Percentile + 1.5 * iqr
   
   plot_render <- ggplot(data = dataset, aes(x = Occupational.title)) +
-    geom_boxplot(aes(ymin = ymin, ymax = ymax, middle = X50th.Percentile, upper = X75th.Percentile,lower= X25th.Percentile),
-                 stat = 'identity') + ylab("Hourly Wage")
-  plot_render <- plot_render + geom_point(aes(y = datapoint, color = "red"), size = 5, name = "Your Wage") +
-    coord_flip() + theme(axis.title.y = element_blank(), legend.position = "none")
+    geom_boxplot(aes(ymin = ymin, ymax = ymax, middle = X50th.Percentile, upper = X75th.Percentile,
+                     lower= X25th.Percentile, alpha = 0.7),
+                 stat = 'identity') + ylab("Hourly Wage") +
+    geom_point(aes(y = datapoint, color = "red"), size = 5) +
+    coord_flip() + theme(axis.title.y = element_blank(), axis.text.y=element_blank(),
+                         axis.ticks.y=element_blank(), legend.position = "none") +
+    ggtitle(paste("Your income is", round(abs(dataset$X50th.Percentile - datapoint),digits =  2), 
+                  "dollars away from the state median income"))
   plot_render
 }
 
