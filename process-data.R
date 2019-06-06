@@ -19,7 +19,7 @@ data$Area.name[data$Area.name == "Eastern WA Nonmetropolitan Area (NMA)"] <- "Ea
 
 
 areas_choices <- distinct(select(data, Area.name))
-occupations <- distinct(select(state_data, Occupational.title))
+
 
 # add fip codes to data frame 
 areas_fips <- areas_choices
@@ -32,8 +32,11 @@ areas_fips <- unnest(areas_fips, fips)
 areas_fips <- drop_na(areas_fips)
 areas_fips$fips <- as.character(areas_fips$fips)
 
+
 state_data <- filter(data, Area.code == 53)
 state_occupations <- distinct(select(state_data, Occupational.title))
+
+occupations <- distinct(select(state_data, Occupational.title))
 
 area_data <- filter(data, Area.code != 53) # filter out Washington-State rows
 
