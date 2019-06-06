@@ -102,6 +102,6 @@ server <- function(input, output) {
   )
   
   output$variablePlot <- renderPlot(
-    drawBox(get_area_occupation_data(input$Area2, input$Occupation), input$wageInput)
+    drawBox(get_state_occupation_data(input$Occupation2), input$wageInput)
   )
 }

@@ -71,13 +71,6 @@ ui <- fluidPage(
             label = "Area",
             choices = as.character(areas_choices[["Area.name"]])[2:19]
           ),
-          sliderInput(
-            inputId = "wageInput",
-            label = "Hourly wage ($/hr)",
-            value = 15.00,
-            min = 0,
-            max = 100
-          ),
           uiOutput("areaOccupations"),
           plotOutput("countyMap2")
         ),
@@ -85,10 +78,30 @@ ui <- fluidPage(
           uiOutput("hourlyWage"),
           uiOutput("annualWage"),
           uiOutput("highestWageArea"),
-          plotOutput("occupationPlot"),
-          plotOutput("variablePlot")
+          plotOutput("occupationPlot")
         )
       )
+    ),
+    
+    tabPanel("Compare My Income",
+             h3(class = "title", "Compare My Average Hourly Income"),
+             sidebarLayout(
+               sidebarPanel(
+                 numericInput(
+                   inputId = "wageInput",
+                   label = "Hourly wage ($/hr)",
+                   value = 15.00
+                 ),
+                 selectInput(
+                   inputId = "Occupation2",
+                   label = "Occupation",
+                   choices = as.vector(state_occupations)
+                 )
+               ),
+               mainPanel(
+                 plotOutput("variablePlot")
+               )
+             )
     ),
 
     navbarMenu("Hourly Income",
@@ -189,43 +202,9 @@ ui <- fluidPage(
                   plotOutput("mostEmployedPlot"),
                    tableOutput("mostEmployedTable")
                  )
-# <<<<<<< HEAD
-#                )),
-#     tabPanel(
-#       "Occupation and Area Lookup",
-#       h3(class = "title", "Browse occupation by area in the dataset"),
-# #h3(class = "title", "Which area in Washington has the highest average hourly income?"),
-#       sidebarLayout(
-#         sidebarPanel(
-#           selectInput(
-#             inputId = "Area2",
-#             label = "Area",
-#             choices = as.vector(areas_choices)
-#           ),
-#           selectInput(
-#             inputId = "Occupation",
-#             label = "Occupation",
-#             choices = as.vector(occupations)
-#           ),
-#           sliderInput(
-#             inputId = "wageInput",
-#             label = "Hourly wage ($/hr)",
-#             value = 15.00,
-#             min = 0,
-#             max = 100,
-#           ),
-#           plotOutput("countyMap2")
-#         ),
-#         mainPanel(
-#           h4(textOutput("occupationAreaLookup")),
-#           plotOutput("variablePlot")
-#         )
-#       )
-#     )
-# =======
+
                )
               )
-# >>>>>>> 66de65f985aba7bc370385153ee9a46ccb824fb6
   )
 )
 

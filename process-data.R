@@ -38,6 +38,7 @@ state_occupations <- distinct(select(state_data, Occupational.title))
 area_data <- filter(data, Area.code != 53) # filter out Washington-State rows
 
 get_occupation_data <- function(occupation) filter(data, Occupational.title == occupation) %>% filter(Area.name != "Washington State")
+get_state_occupation_data <- function(occupation) filter(state_data, Occupational.title == occupation)
 get_area_data <- function(area) filter(data, Area.name == area)
 get_area_occupations <- function(area) filter(data, Area.name == area) %>% pull(Occupational.title)
 get_hr_wage <- function(df) df$Average.wage
